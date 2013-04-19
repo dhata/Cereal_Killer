@@ -22,7 +22,10 @@ Written by Danielle Hata
   	* moves randomly up, down, left right
   	* enters from N W E, could exit any side
   	* not killable, when it collides with other objects it destroys them
-Images from [First Fear]("http://firstfear.deviantart.com/art/Pixel-LuckyCharms-Icons-269837586?q=gallery%3Afirstfear%2F2084580&qo=27")
+
+![alt text](http://i47.tinypic.com/3rdwj.jpg) ![alt text](http://i45.tinypic.com/rva8lt.jpg) ![alt text](http://i49.tinypic.com/bey9tu.jpg) ![alt text](http://i45.tinypic.com/292nv6h.jpg) ![alt text](http://i50.tinypic.com/aexruu.jpg)
+
+Images from [First Fear](http://firstfear.deviantart.com/art/Pixel-LuckyCharms-Icons-269837586?q=gallery%3Afirstfear%2F2084580&qo=27)
 
 ## How to Play
 
