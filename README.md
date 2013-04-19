@@ -1,12 +1,12 @@
 # Game - Programming Assignments Private Repository
 ### Student Information
-  + Name: Tommy Trojan
-  + USC Email: ttrojan@usc.edu
-  + USC ID: 0123456789
+  + Name: Danielle Hata
+  + USC Email: dhata@usc.edu
+  + USC ID: 1934223994
 
 ### Game Information
-  + Game Name: myAwsomeGame
-  + Game Description: One sentence game description
+  + Game Name: Cereal Killer
+  + Game Description: The player tries to attack flying cereal and survive as long as possible.
   + [Game Design Doc](GameDesignDoc.md)
 
 

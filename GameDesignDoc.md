@@ -1,89 +1,59 @@
-# Game Design Document
-This is a place holder for your game design document. You are advised to write your document in [Markdown](http://daringfireball.net/projects/markdown/) and the following section will show you how to write a document using Markdown markup.
+# Cereal Killer
+This game is a keybased game that uses the arrow keys to aim at cereal and the space bar to attack.
 
-Alternativley, you can write your document in plain text if you wish.
-
-----
-
-## Markdown
-Markdown is a human-readable structured plain text format that is used to convert text into HTML. GitHub automatically renders Markdown into HTML.
-
-This is a crash course on how to use Markdown. The following section will show you the plain text used to generate the document shown in the rendering section.
-
-### Code
-
-```
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-
-You can also write in **bold** or _italics_. You can also ~~strike through~~ or write inline `Code Segments`
-
->Blockquotes are done as such.
-
-Just make sure to separate paragraphs with an emptyline. 
-Otherwise, they are considered in the same paragraph.
-
-You link to [Google](https://www.google.com) as such and lists are written has follows:
-  1. First you indent with two empty spaces.
-  1. Then, you use:
-    * `1.` to signal an ordered (i.e. numbered) list, or
-    * `*`, `-`, `+` to represent an unordered list.
-      1. Make sure to maintain indentation
-      1. As it is used to identify sub-lists
-  1. Numbering and symboles don't matter as they are auto-generated later.
-
-Tables are pretty easy to make:
-
-| Tables        | Are           | Easy          |
-| ------------- |:-------------:| -------------:|
-| left-aligned  | centered      | right-aligned |
-| header are    | bolded and    | centered      |
-| zebra stripes | are neat      | 1             |
-
-
-Images are added inline by using the following syntax
-![alt text](http://octodex.github.com/images/Professortocat_v2.png "Image Title")
-```
+Written by Danielle Hata
 
 ----
 
-### Rendering
-This section shows the rendering of the plain text above.
+## Objects
+  1. Object A - Balloon
+  	* moves straight, at any angle
+  	* enters from N W E, exits from S E W
+  2. Object B - Clover
+  	* moves straight. After moving forward 10 paces, begins moving backward by 5 paces, then forward 10 paces again
+  	* enters from N W E, exits from S E W
+  3. Object C - Diamond
+  	* moves zig zag. Moves forward 5 paces, then turns 45 degrees left, moves forward 5 paces, then turns 45 degrees right, repeat
+  	* enters from N W E, could exit any side
+  4. Object D - Moon
+  	* moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides
+  	* enters from the top, exits from the bottom.
+  5. Object E - Star
+  	* moves randomly up, down, left right
+  	* enters from N W E, could exit any side
+  	* not killable, when it collides with other objects it destroys them
+Images from [First Fear]("http://firstfear.deviantart.com/art/Pixel-LuckyCharms-Icons-269837586?q=gallery%3Afirstfear%2F2084580&qo=27")
 
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
+## How to Play
 
-You can also write in **bold** or _italics_. You can also ~~strike through~~ or write inline `Code Segments`
+There will be a docked gun at the bottom of the screen in the middle. You will shoot at the objects with bubbles. There is a limited number of bubbles, and when you run out of bubbles, you die.
+For every object you defeat, you get more bubbles. There is no penalty for missing killing an object or when an object hits the gun.
 
->Blockquotes are done as such.
+### Equip
+Uses the keys, x, c, and enter
+  1. **x** turns the gun to the left
+  2. **c** turns the gun to the right
+  3. **enter** shoots a bubble
 
-Just make sure to separate paragraphs with an emptyline. 
-Otherwise, they are considered in the same paragraph.
+## Scoring
 
-You link to [Google](https://www.google.com) as such and lists are written has follows:
-  1. First you indent with two empty spaces.
-  1. Then, you use:
-    * `1.` to signal an ordered (i.e. numbered) list, or
-    * `*`, `-`, `+` to represent an unordered list.
-      1. Make sure to maintain indentation
-      1. As it is used to identify sub-lists
-  1. Numbering and symboles don't matter as they are auto-generated later.
+Score will increase by how many objects you kill. Points are granted based on the speed of the object killed. Each type of object grants a certain number of bubbles. Score cannot go down.
 
-Tables are pretty easy to make:
+## Lives
 
-| Tables        | Are           | Easy          |
-| ------------- |:-------------:| -------------:|
-| left-aligned  | centered      | right-aligned |
-| header are    | bolded and    | centered      |
-| zebra stripes | are neat      | 1             |
+Player starts with 50 bubbles, decreases 1 bubble for every shot out of the gun, increases bubbles by killing objects. Each type of object gives a different bubble reward.
+The game ends when the player runs out of bubbles.
 
+## UI Layout
+| Graphic            | Qt Class    | Location         |
+|--------------------|-------------|------------------|
+| Start Button       | QPushButton | Top left         |
+| Pause Button       | QPushButton | Top mid          |
+| Quit Button        | QPushButton | Top right        |
+| Name Entry         | QLineEdit   | Above Start      |
+| Score              | QText       | Bottom right     |
+| Bubble Count       | QText       | Bottom mid       |
+| Score/Object Guide | QListView   | Right Navigation |
+| Key Instructions   | QListView   | Right Navigation |
 
-Images are added inline by using the following syntax
-![alt text](http://octodex.github.com/images/Professortocat_v2.png "Image Title")
-
+![alt text](http://i46.tinypic.com/e9atds.jpg)
