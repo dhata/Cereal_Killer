@@ -12,5 +12,13 @@
 *.la
 *.a
 
-# Readme edited files
+# edited files
 *.md~
+.gitignore~
+*.cpp~
+*.h~
+
+Makefile
+game_dhata
+game_dhata.pro
+moc_*
