@@ -7,6 +7,7 @@ MainWindow::MainWindow() {
 	setFixedSize( WINDOW_MAX_X*2, WINDOW_MAX_Y*2 );
 	setWindowTitle( "Cereal Killer -- dhata");	
 	
+	
 	whole= new QGridLayout();
 	
 	name= new QLineEdit("Enter Name");
@@ -25,9 +26,11 @@ MainWindow::MainWindow() {
 	connect(quit, SIGNAL(clicked()), this, SLOT(close()));
 	
 	boardScene=new QGraphicsScene;
-	//boardScene->setSceneRect(0,0,WINDOW_MAX_X+200, WINDOW_MAX_Y*2-125);
+	//boardScene->setSceneRect(0, -1*(WINDOW_MAX_Y*2-125), WINDOW_MAX_X+200, WINDOW_MAX_Y*2-125);
+	
 	boardView=new QGraphicsView(boardScene);
 	boardView->setFixedSize(WINDOW_MAX_X+200, WINDOW_MAX_Y*2-125);
+	//boardView->scale(0,-1);
 	boardView->setAlignment(Qt::AlignLeft| Qt::AlignTop);
 	whole->addWidget(boardView,0,0,5,5);
 	
@@ -74,7 +77,7 @@ void MainWindow::mainMove(){
 		int vy= (*it)->getVelocityY();
 		nx+= vx;
 		ny+= vy;
-		if( nx<0 || ny<0 || nx> (WINDOW_MAX_X) || ny> (WINDOW_MAX_Y)){
+		if( nx<0 || ny<0 || nx+50> (WINDOW_MAX_X+200) || ny+50> (WINDOW_MAX_Y+175)){
 			cout<< " reached the edge."<<endl;
 			Cereal* temp=*it;
 			boardScene->removeItem(temp);
@@ -90,18 +93,19 @@ void MainWindow::addMonster(){
 	//int type= rand()%4;
 	int dir= rand()%3;
 	int x, y;
+	int vx, vy;
 	if(dir==0){	//enter from the left
 		x=0;
-		y= rand()%(WINDOW_MAX_Y);
+		y= rand()%475;
 	} else if(dir==1){	//enter from the top
-		x= rand()%(WINDOW_MAX_X);
+		x= rand()%700;
 		y=0;
 	} else {	//enter from the right
-		x=WINDOW_MAX_X;
-		y= rand()%(WINDOW_MAX_Y);
+		x=WINDOW_MAX_X+200;
+		y= rand()%(WINDOW_MAX_Y+175);
 	}
-	int vx = rand()%20-10;
-	int vy = rand()%20-10;
+	vx = rand()%20-10;
+	vy = rand()%20-10;
 	if(vx==0){
 		vx++;
 	}
@@ -109,7 +113,8 @@ void MainWindow::addMonster(){
 		vy++;
 	}
 	Cereal* temp;
-	temp=new Balloon(x, y, vx, vy, balloonpic);
+	//temp=new Balloon(x, y, vx, vy, balloonpic);
+	temp=new Balloon(100, 0, vx, vy, balloonpic);
 	cout<<x<< ", " <<y<<endl;
 	objectList.push_back(temp);
 	boardScene->addItem(temp);
@@ -138,7 +143,7 @@ void MainWindow::pauseGame(){
 }
 	
 void MainWindow::handleTimer(){
-	mainMove();
+	//mainMove();
 	if(count==50*frequency){
 		frequency--;
 		addMonster();

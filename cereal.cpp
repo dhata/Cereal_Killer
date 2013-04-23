@@ -7,6 +7,7 @@ Cereal::Cereal(double nx, double ny, int vx, int vy, QPixmap* pic ) :
     velocityX = vx;
     velocityY = vy;
     setPos(x, y);
+   // move(x,y);
 }
 
 int Cereal::getX() {

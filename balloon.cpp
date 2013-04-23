@@ -9,6 +9,8 @@ Balloon::~Balloon(){
 
 void Balloon::move(){
 	count++;
+	x+=velocityX;
+	y+=velocityY;
 	if(count==20){
 		count=0;
 		moveBy(velocityX, velocityY);

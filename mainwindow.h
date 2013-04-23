@@ -26,7 +26,7 @@ using namespace std;
 
 /** MainWindow Class
  */
-class MainWindow : public QGraphicsView {
+class MainWindow : public QGraphicsView{
 	Q_OBJECT
 public: 
 	/** default constructor 
@@ -56,6 +56,8 @@ public slots:
 
 	//void readData();
 private:
+	
+	
 	/** Scene holds the QT items */
 	QGraphicsScene *scene;
 	/** timer lets the objects move continuously */
