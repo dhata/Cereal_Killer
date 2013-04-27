@@ -11,19 +11,27 @@ Written by Danielle Hata
   	* enters from N W E, exits from S E W
   2. Object B - Clover
   	* moves straight. After moving forward 10 paces, begins moving backward by 5 paces, then forward 10 paces again
-  	* enters from N W E, exits from S E W
-  3. Object C - Diamond
+  	* enters from N W E, exits from S E W 
+  3. Object C - Moon
   	* moves zig zag. Moves forward 5 paces, then turns 45 degrees left, moves forward 5 paces, then turns 45 degrees right, repeat
   	* enters from N W E, could exit any side
-  4. Object D - Moon
+ <strike> 4. Object D - Diamond
   	* moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides
-  	* enters from the top, exits from the bottom.
+  	* enters from the top, exits from the bottom.</strike>
   5. Object E - Star
   	* moves randomly up, down, left right
   	* enters from N W E, could exit any side
   	* not killable, when it collides with other objects it destroys them
+  6. Object F - Player (crystal)
+  	* moves horizontally on the bottom of the screen.
+  	* starts in the middle of the screen
+  	* collisions don't matter
+  7. Object G - Bullet (small crystal)
+  	* move straight North from the center of the player.
+  	* each bullet takes one point from the user's life
+  	* collision with cereal gives more life
 
-![alt text](http://i47.tinypic.com/3rdwj.jpg) ![alt text](http://i45.tinypic.com/rva8lt.jpg) ![alt text](http://i49.tinypic.com/bey9tu.jpg) ![alt text](http://i45.tinypic.com/292nv6h.jpg) ![alt text](http://i50.tinypic.com/aexruu.jpg)
+![alt text](images/balloon.gif "balloon") ![alt text](images/clover.gif "clover") ![alt text](images/moon.gif "moon") ![alt text](images/star.gif "star") ![alt text](images/gradient2.png "player") ![alt text](images/purple.png "bullet")
 
 Images from [First Fear](http://firstfear.deviantart.com/art/Pixel-LuckyCharms-Icons-269837586?q=gallery%3Afirstfear%2F2084580&qo=27)
 
