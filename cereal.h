@@ -14,7 +14,7 @@ public:
     int getY();
     int getVelocityX();
     int getVelocityY();
-    virtual void move()=0;
+    virtual bool move()=0;
 
 protected:
     int x;

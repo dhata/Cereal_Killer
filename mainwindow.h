@@ -15,18 +15,24 @@
 #include <QVBoxLayout>
 #include <QListWidget>
 #include <QPixmap>
+#include <QDockWidget>
+#include "buttons.h"
 #include <list>
 #include "cereal.h"
 #include "balloon.h"
+#include "star.h"
+#include "counts.h"
 
 using namespace std;
 
 #define WINDOW_MAX_X 500
+#define X_COORD 700
 #define WINDOW_MAX_Y 300
+#define Y_COORD 475
 
 /** MainWindow Class
  */
-class MainWindow : public QGraphicsView{
+class MainWindow : public QMainWindow{
 	Q_OBJECT
 public: 
 	/** default constructor 
@@ -59,16 +65,16 @@ private:
 	
 	
 	/** Scene holds the QT items */
-	QGraphicsScene *scene;
+	//QGraphicsScene *scene;
 	/** timer lets the objects move continuously */
 	QTimer *timer;
-	QLineEdit *name;
+	//QLineEdit *name;
 	/** start is a button that makes the game start. */
-	QPushButton *start;
+	//QPushButton *start;
 	/** quit is a button that quits the program */
-	QPushButton *quit;
+	//QPushButton *quit;
 	/** end is a button that pauses the game screen */
-	QPushButton *pause;
+	//QPushButton *pause;
 	
 	/** boardScene is where the game is displayed */
 	QGraphicsScene *boardScene;
@@ -87,9 +93,16 @@ private:
 	QString user;
 	int frequency;
 	int count;
+	int count2;
 	
 	list<Cereal*> objectList;
 	QPixmap * balloonpic;
+	QPixmap * starpic;
+	QDockWidget* commands;
+	Buttons* buttons_;
+	
+	QDockWidget* numbers;
+	Counts* counts_;
 	
 	
 	

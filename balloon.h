@@ -7,7 +7,7 @@ class Balloon: public Cereal{
 public:
 	Balloon(double nx, double ny, int vx, int vy, QPixmap* pic);
 	~Balloon();
-	void move();
+	bool move();
 	
 private:
 	int count;
