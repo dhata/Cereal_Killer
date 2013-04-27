@@ -15,9 +15,9 @@ Written by Danielle Hata
   3. Object C - Moon
   	* moves zig zag. Moves forward 5 paces, then turns 45 degrees left, moves forward 5 paces, then turns 45 degrees right, repeat
   	* enters from N W E, could exit any side
- <strike> 4. Object D - Diamond
+~~  4. Object D - Diamond
   	* moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides
-  	* enters from the top, exits from the bottom.</strike>
+  	* enters from the top, exits from the bottom.~~
   5. Object E - Star
   	* moves randomly up, down, left right
   	* enters from N W E, could exit any side
