@@ -15,9 +15,9 @@ Written by Danielle Hata
   3. Object C - Moon
   	* moves zig zag. Moves forward 5 paces, then turns 45 degrees left, moves forward 5 paces, then turns 45 degrees right, repeat
   	* enters from N W E, could exit any side
-  4. ~~Object D - Diamond~~
-  	* ~~moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides~~
-  	* ~~enters from the top, exits from the bottom.~~
+  4. Object D - Diamond
+  	* moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides
+  	* enters from the top, exits from the bottom.
   5. Object E - Star
   	* moves randomly up, down, left right
   	* enters from N W E, could exit any side
@@ -31,7 +31,7 @@ Written by Danielle Hata
   	* each bullet takes one point from the user's life
   	* collision with cereal gives more life
 
-![alt text](images/balloon.gif "balloon") ![alt text](images/clover.gif "clover") ![alt text](images/moon.gif "moon") ![alt text](images/star.gif "star") ![alt text](images/gradient2.png "player") ![alt text](images/purple.png "bullet")
+![alt text](images/balloon.gif "balloon") ![alt text](images/clover.gif "clover") ![alt text](images/moon.gif "moon") ![alt text](images/diamond.gif "diamond") ![alt text](images/star.gif "star") ![alt text](images/gradient2.png "player") ![alt text](images/purple.png "bullet")
 
 Images from [First Fear](http://firstfear.deviantart.com/art/Pixel-LuckyCharms-Icons-269837586?q=gallery%3Afirstfear%2F2084580&qo=27)
 

@@ -93,7 +93,6 @@ private:
 	QString user;
 	int frequency;
 	int count;
-	int count2;
 	
 	list<Cereal*> objectList;
 	QPixmap * balloonpic;

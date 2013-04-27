@@ -19,44 +19,17 @@ MainWindow::MainWindow() {
 	addDockWidget(Qt::BottomDockWidgetArea, numbers);
 	numbers->setFeatures(QDockWidget::NoDockWidgetFeatures);
 	
-	//whole= new QGridLayout();
-	
-	/*name= new QLineEdit("Enter Name");
-	whole->addWidget(name,0,5);
 
-	
-	start=new QPushButton("Start Game");
-	pause=new QPushButton("Pause Game");
-	quit=new QPushButton("Quit Game");
-	whole->addWidget(start,1,5);
-	whole->addWidget(pause,2,5);
-	whole->addWidget(quit,3,5);
-	
-	connect(start, SIGNAL(clicked()),this, SLOT(startGame()));
-	connect(pause, SIGNAL(clicked()), this, SLOT(pauseGame()));
-	connect(quit, SIGNAL(clicked()), this, SLOT(close()));
-	*/
 	boardScene=new QGraphicsScene;
 	boardScene->setSceneRect(0, 0, 500, 475);
 	
 	boardView=new QGraphicsView(boardScene);
 	boardView->setFixedSize(WINDOW_MAX_X+200, WINDOW_MAX_Y*2-120);
-	//boardView->scale(0,-1);
+	
 	boardView->setAlignment(Qt::AlignLeft| Qt::AlignTop);
-	//whole->addWidget(boardView,0,0,5,5);
+	
 	setCentralWidget(boardView);
 	
-	//score=new QTextEdit;
-	//score->setReadOnly(true);
-	
-	//score->setBaseSize(100,100);
-	
-	//whole->addWidget(score, 6,3);
-	//whole->setSpacing(20);
-	
-	//for(int i=0; i<6;i++){
-	//	whole->setColumnMinimumWidth(i,100);
-	//}
 	gameStarted=false;
 	
 	timer=new QTimer();
@@ -85,13 +58,6 @@ void MainWindow::show(){
 void MainWindow::mainMove(){
 	list<Cereal*>::iterator it;
 	for(it = objectList.begin(); it!=objectList.end();++it){
-		int nx= (*it)->getX();
-		int ny= (*it)->getY();
-		int vx= (*it)->getVelocityX();
-		int vy= (*it)->getVelocityY();
-		nx+= vx;
-		ny+= vy;
-		//if( nx<20 || ny<20 || nx> (X_COORD) || ny> (Y_COORD)){
 		if( !(*it)->move() ) {
 			cout<< nx << ", " <<ny;
 			cout<< " reached the edge."<<endl;
@@ -99,11 +65,7 @@ void MainWindow::mainMove(){
 			boardScene->removeItem(temp);
 			objectList.remove(temp);
 			--it;
-		} //else{
-		
-		//	 (*it)->move();
-			
-		//}
+		}
 	}
 }
 
@@ -176,7 +138,6 @@ void MainWindow::pauseGame(){
 void MainWindow::handleTimer(){
 	//if(count2==20){
 		mainMove();
-		count2=0;
 	//}
 	if(count==50*frequency){
 		frequency--;
@@ -184,7 +145,6 @@ void MainWindow::handleTimer(){
 		count=0;
 	}
 	count++;
-	count2++;
 }
 
 	
