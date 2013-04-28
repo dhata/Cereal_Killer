@@ -16,12 +16,21 @@
 #include <QListWidget>
 #include <QPixmap>
 #include <QDockWidget>
+#include <QKeyEvent>
+#include <QString>
 #include "buttons.h"
 #include <list>
 #include "cereal.h"
 #include "balloon.h"
 #include "star.h"
 #include "counts.h"
+#include "graphicsview.h"
+#include "player.h"
+#include "bullet.h"
+#include "clover.h"
+#include "diamond.h"
+#include "moon.h"
+
 
 using namespace std;
 
@@ -44,11 +53,16 @@ public:
 	~MainWindow();
 	
 	/** show function displays the MainWindow and all of the objects inside */
-	void show();
+	//void show();
 	
 	void mainMove();
 	
 	void addMonster();
+	
+	void endScore();
+	
+protected: 
+	void keyPressEvent (QKeyEvent *e);
 	
 
 public slots:
@@ -77,9 +91,11 @@ private:
 	//QPushButton *pause;
 	
 	/** boardScene is where the game is displayed */
-	QGraphicsScene *boardScene;
+	//QGraphicsScene *boardScene;
 	/** boardView displays the boardScene in the layout and defines the area it can take up */
-	QGraphicsView *boardView;
+	//QGraphicsView *boardView;
+	
+	GraphicsView *boardView;
 	
 	
 	/** vboxlayout that governs the whole window */
@@ -97,11 +113,19 @@ private:
 	list<Cereal*> objectList;
 	QPixmap * balloonpic;
 	QPixmap * starpic;
+	QPixmap * playerpic;
+	QPixmap * bulletpic;
+	QPixmap * cloverpic;
+	QPixmap * diamondpic;
+	QPixmap * moonpic;
 	QDockWidget* commands;
 	Buttons* buttons_;
 	
 	QDockWidget* numbers;
 	Counts* counts_;
+	
+	Player* player_;
+	int lives;
 	
 	
 	

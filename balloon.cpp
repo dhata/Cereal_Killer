@@ -1,7 +1,7 @@
 #include "balloon.h"
 
 Balloon::Balloon(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
-	//count =0;
+	count =0;
 }
 
 Balloon::~Balloon(){

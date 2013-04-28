@@ -16,8 +16,8 @@ Written by Danielle Hata
   	* moves zig zag. Moves forward 5 paces, then turns 45 degrees left, moves forward 5 paces, then turns 45 degrees right, repeat
   	* enters from N W E, could exit any side
   4. Object D - Diamond
-  	* moves horizontally at a 20 degree angle back and forth across the screen, bounces off the right and left sides
-  	* enters from the top, exits from the bottom.
+  	* moves straight back and forth across the screen, bounces off the sides
+  	* enters from the any side, does not exit unless destroyed
   5. Object E - Star
   	* moves randomly up, down, left right
   	* enters from N W E, could exit any side
