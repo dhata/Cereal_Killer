@@ -1,5 +1,5 @@
 # Cereal Killer
-This game is a keybased game that uses the arrow keys to aim at cereal and the space bar to attack.
+This game is a keybased game that uses the keys x and c to move the player and the space bar to attack.
 
 Written by Danielle Hata
 
@@ -37,23 +37,23 @@ Images from [First Fear](http://firstfear.deviantart.com/art/Pixel-LuckyCharms-I
 
 ## How to Play
 
-There will be a docked gun at the bottom of the screen in the middle. You will shoot at the objects with bubbles. There is a limited number of bubbles, and when you run out of bubbles, you die.
-For every object you defeat, you get more bubbles. There is no penalty for missing killing an object or when an object hits the gun.
+There will be a docked gun at the bottom of the screen. You will shoot at the objects with crystals. There is a limited number of crystals, and when you run out of crystals, you die.
+For every object you defeat, you get more crystals. There is no penalty for missing killing an object or when an object hits the gun.
 
 ### Equip
 Uses the keys, x, c, and enter
-  1. **x** turns the gun to the left
-  2. **c** turns the gun to the right
-  3. **enter** shoots a bubble
+  1. **x** moves the gun to the left
+  2. **c** moves the gun to the right
+  3. **enter** shoots a crystal
 
 ## Scoring
 
-Score will increase by how many objects you kill. Points are granted based on the speed of the object killed. Each type of object grants a certain number of bubbles. Score cannot go down.
+Score will increase by how many objects you kill. Points are granted based on the speed of the object killed. Each type of object grants a certain number of crystals. Score cannot go down.
 
 ## Lives
 
-Player starts with 50 bubbles, decreases 1 bubble for every shot out of the gun, increases bubbles by killing objects. Each type of object gives a different bubble reward.
-The game ends when the player runs out of bubbles.
+Player starts with 50 crystals, decreases 1 bubble for every shot out of the gun, increases crystals by killing objects. Each type of object gives a different crystal reward.
+The game ends when the player runs out of crystals.
 
 ## UI Layout
 | Graphic            | Qt Class    | Location         |
@@ -67,4 +67,4 @@ The game ends when the player runs out of bubbles.
 | Score/Object Guide | QListView   | Right Navigation |
 | Key Instructions   | QListView   | Right Navigation |
 
-![alt text](http://i46.tinypic.com/e9atds.jpg)
+![alt text](images/layout.jpg "sample game layout")
