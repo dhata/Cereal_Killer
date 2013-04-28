@@ -99,9 +99,9 @@ private:
 	
 	
 	/** vboxlayout that governs the whole window */
-	QGridLayout *whole;
+	//QGridLayout *whole;
 	
-	QTextEdit *score;
+	//QTextEdit *score;
 	
 	/** gameStarted attribute is true when there is a board in the window. */
 	bool gameStarted;

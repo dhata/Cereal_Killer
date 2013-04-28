@@ -4,6 +4,9 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QLineEdit>
+#include <QListView>
+#include <QString>
+#include <QListWidget>
 
 class MainWindow;
 
@@ -21,6 +24,8 @@ private:
 
 	MainWindow* main;
 	QVBoxLayout* layout;
+	QListWidget* rules;
+	QListWidget* points;
 	
 public:
 	QLineEdit *name;
@@ -30,6 +35,8 @@ public:
 	QPushButton *quit;
 	/** end is a button that pauses the game screen */
 	QPushButton *pause;
+	
+	
 };
 
 #endif

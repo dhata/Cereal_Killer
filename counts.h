@@ -18,7 +18,7 @@ private:
 	QHBoxLayout* layout;
 	
 public:
-	QTextEdit *bubbles;
+	QTextEdit *crystals;
 	QTextEdit *score;
 };
 

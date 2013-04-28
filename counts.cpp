@@ -7,10 +7,10 @@ Counts::Counts(MainWindow * m){
 	
 	layout= new QHBoxLayout();
 	setLayout(layout);
-	bubbles= new QTextEdit("Bubble Count");
-	bubbles->setReadOnly(true);
+	crystals= new QTextEdit("Crystal Count");
+	crystals->setReadOnly(true);
 	layout->addSpacing (10);
-	layout->addWidget(bubbles);
+	layout->addWidget(crystals);
 	layout->addSpacing(230);
 	
 	score=new QTextEdit("Score Side");

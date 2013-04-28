@@ -56,6 +56,21 @@ MainWindow::MainWindow() {
 }
 	
 MainWindow::~MainWindow() {
+	delete buttons_;
+	delete commands;
+	delete counts_;
+	delete numbers;
+	delete timer;
+	
+	delete balloonpic;
+	delete starpic;
+	delete playerpic;
+	delete bulletpic;
+	delete cloverpic;
+	delete diamondpic;
+	delete moonpic;
+	
+	delete boardView;
 	
 }
 
@@ -138,11 +153,11 @@ void MainWindow::addMonster(){
 
 void MainWindow::endScore(){
 	timer->stop();
-	counts_->bubbles->setText("GAME OVER.");
+	counts_->crystals->setText("GAME OVER.");
 
-	counts_->bubbles->append("FINAL SCORE: " + counts_->score->toPlainText());
+	counts_->crystals->append("FINAL SCORE: " + counts_->score->toPlainText());
 	buttons_->pause->setDisabled(true);
-	buttons_->start->setDisabled(true);
+	//buttons_->start->setDisabled(true);
 }
 
 void MainWindow::keyPressEvent( QKeyEvent *e){
@@ -151,8 +166,9 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 		player_->moveR();
 	} else if (e->key()==Qt::Key_X){
 		player_->moveL();
-	} else if( e->key()==Qt::Key_Enter){
+	} else if( e->key()==Qt::Key_Space){
 		//make a new bullet/add to the objectList
+		
 	} else {
 		if(lives>0){
 		Cereal* temp= new Bullet(player_->getX()+7, player_->getY(), 0, -10, bulletpic);
@@ -161,7 +177,7 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 		lives--;
 		QString a;
 		a.setNum(lives);
-		counts_->bubbles->setText(a);
+		counts_->crystals->setText(a);
 		}
 		else {
 			endScore();
@@ -172,7 +188,22 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 			
 
 void MainWindow::startGame(){
-	if(gameStarted){
+	if(gameStarted){// || buttons_->name->haschanged
+		//reset and restart game!
+		Cereal * temp;
+		while(objectList.size()!=0){
+			temp=objectList.front();
+			objectList.pop_front();
+			boardView->boardScene->removeItem(temp);
+			delete temp;
+		}
+		timer->stop();
+		gameStarted=false;
+		counts_->score->setText("Score Side");
+		counts_->crystals->setText("Crystal Count");
+		boardView->boardScene->removeItem(player_);
+		delete player_;
+		lives=50;
 		return;
 	}
 	gameStarted=true;
@@ -183,7 +214,7 @@ void MainWindow::startGame(){
 	counts_->score->setText("0");
 	QString a;
 	a.setNum(lives);
-	counts_->bubbles->setText(a);
+	counts_->crystals->setText(a);
 	player_=new Player(X_COORD/2-35, Y_COORD-57,5,5, playerpic);
 	boardView->boardScene->addItem(player_);
 }
