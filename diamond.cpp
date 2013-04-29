@@ -4,6 +4,7 @@ Diamond::Diamond(double nx, double ny, int vx, int vy, QPixmap* pic, int dir): C
 	count =0;
 	count2=0;
 	dir_=dir;
+	type='D';
 }
 
 Diamond::~Diamond(){

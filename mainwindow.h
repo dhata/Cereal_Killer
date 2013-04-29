@@ -61,6 +61,8 @@ public:
 	
 	void endScore();
 	
+	void calc(char type);
+	
 protected: 
 	void keyPressEvent (QKeyEvent *e);
 	
@@ -126,6 +128,7 @@ private:
 	
 	Player* player_;
 	int lives;
+	int points_;
 	
 	
 	

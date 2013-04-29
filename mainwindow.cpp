@@ -42,6 +42,7 @@ MainWindow::MainWindow() {
 	frequency = 800;
 	count=0;
 	lives=50;
+	points_=0;
 	
 	balloonpic=new QPixmap("images/balloon.gif");
 	starpic=new QPixmap("images/star.gif");
@@ -84,14 +85,64 @@ void MainWindow::mainMove(){
 	list<Cereal*>::iterator it;
 	for(it = objectList.begin(); it!=objectList.end();++it){
 		if( !(*it)->move() ) {
-			cout<< (*it)->getX() << ", " <<(*it)->getY();
-			cout<< " reached the edge."<<endl;
 			Cereal* temp=*it;
 			boardView->boardScene->removeItem(temp);
 			objectList.remove(temp);
+			delete temp;
 			--it;
 		}
 	}
+	list<Cereal*>::iterator it2;
+	for(it = objectList.begin(); it!=objectList.end();++it){
+		//Cereal* itemA=objectList[i];
+		bool f=false;
+		Cereal* tempA=*it;
+		for(it2 = objectList.begin(); it2!=objectList.end();++it2){
+			//Cereal* itemB= objectList[j];
+			//f=false;
+			
+			Cereal* tempB=*it2;
+			if(tempA==tempB)
+				continue;
+			if(tempA->getType()=='S'){
+			if(tempA->collidesWithItem(tempB)){
+				if(tempB->getType()!='S'){
+					boardView->boardScene->removeItem(tempB);
+					objectList.remove(tempB);
+					--it2;
+					delete tempB;
+					//cout<<"Star killed\n";
+					//continue;
+				}
+			}			
+			}
+			if(tempA->getType()=='b'){
+				if(tempA->collidesWithItem(tempB)){
+					if(tempB->getType()!='S'&&tempB->getType()!='b'){
+						calc(tempB->getType());
+						boardView->boardScene->removeItem(tempB);
+						objectList.remove(tempB);
+						--it2;
+						delete tempB;
+						f=true;
+						//cout<<"bullet killed\n";
+						//continue;
+					}
+				}
+			}
+			
+		}
+		if(f){
+				boardView->boardScene->removeItem(tempA);
+				objectList.remove(tempA);
+				delete tempA;
+				--it;
+				//cout<<"bullet removed\n";
+				//continue;
+			}
+		//cout<<"finished inside iteration\n";
+	}
+	//cout<<"finished move\n";
 }
 
 void MainWindow::addMonster(){
@@ -146,18 +197,42 @@ void MainWindow::addMonster(){
 	}
 	//temp=new Diamond(x,y, vx, vy, diamondpic, dir);
 	//temp=new Balloon(100, 0, vx, vy, balloonpic);
-	cout<<x<< ", " <<y<< "  " << vx<<", " <<vy<<endl;
+	//cout<<x<< ", " <<y<< "  " << vx<<", " <<vy<<endl;
 	objectList.push_back(temp);
 	boardView->boardScene->addItem(temp);
 }
 
 void MainWindow::endScore(){
 	timer->stop();
-	counts_->crystals->setText("GAME OVER.");
+	counts_->crystals->setText("GAME OVER. " + buttons_->name->text());
 
 	counts_->crystals->append("FINAL SCORE: " + counts_->score->toPlainText());
 	buttons_->pause->setDisabled(true);
+	
 	//buttons_->start->setDisabled(true);
+}
+
+void MainWindow::calc(char type){
+	if(type=='B'){
+		points_+=5;
+		lives+=1;
+	} else if(type=='C'){
+		points_+=8;
+		lives+=2;
+	} else if(type=='M'){
+		points_+=15;
+		lives+=4;
+	} else if(type=='D'){
+		points_+=20;
+		lives+=5;
+	} else {
+	}
+	QString a;
+	a.setNum(lives);
+	counts_->crystals->setText(a);
+	QString b;
+	b.setNum(points_);
+	counts_->score->setText(b);
 }
 
 void MainWindow::keyPressEvent( QKeyEvent *e){
@@ -166,10 +241,8 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 		player_->moveR();
 	} else if (e->key()==Qt::Key_X){
 		player_->moveL();
-	} else if( e->key()==Qt::Key_Space){
+	} else if( e->key()==Qt::Key_M){
 		//make a new bullet/add to the objectList
-		
-	} else {
 		if(lives>0){
 		Cereal* temp= new Bullet(player_->getX()+7, player_->getY(), 0, -10, bulletpic);
 		objectList.push_back(temp);
@@ -182,6 +255,19 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 		else {
 			endScore();
 		}
+	} else {
+		/*if(lives>0){
+		Cereal* temp= new Bullet(player_->getX()+7, player_->getY(), 0, -10, bulletpic);
+		objectList.push_back(temp);
+		boardView->boardScene->addItem(temp);
+		lives--;
+		QString a;
+		a.setNum(lives);
+		counts_->crystals->setText(a);
+		}
+		else {
+			endScore();
+		}*/
 	}
 	}
 }
@@ -202,10 +288,14 @@ void MainWindow::startGame(){
 		counts_->score->setText("Score Side");
 		counts_->crystals->setText("Crystal Count");
 		boardView->boardScene->removeItem(player_);
+		buttons_->pause->setDisabled(false);
+		buttons_->name->setDisabled(false);
 		delete player_;
 		lives=50;
+		points_=0;
 		return;
 	}
+	if(buttons_->name->isModified()){
 	gameStarted=true;
 	user=buttons_->name->text();
 	buttons_->name->setDisabled(true);
@@ -215,8 +305,9 @@ void MainWindow::startGame(){
 	QString a;
 	a.setNum(lives);
 	counts_->crystals->setText(a);
-	player_=new Player(X_COORD/2-35, Y_COORD-57,5,5, playerpic);
+	player_=new Player(X_COORD/2-35, Y_COORD-57,10,10, playerpic);
 	boardView->boardScene->addItem(player_);
+	}
 }
 
 void MainWindow::pauseGame(){
@@ -237,6 +328,9 @@ void MainWindow::handleTimer(){
 		frequency--;
 		addMonster();
 		count=0;
+	}
+	if(frequency==500){
+		timer->setInterval(4);
 	}
 	count++;
 }

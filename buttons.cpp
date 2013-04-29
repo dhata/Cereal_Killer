@@ -30,7 +30,7 @@ Buttons::Buttons(MainWindow* m){
 	rules->addItem(b);
 	QString c("C to move right");
 	rules->addItem(c);
-	QString d("ENTER to shoot");
+	QString d("M to shoot");
 	rules->addItem(d);
 	QString h("Crystal Count on Left");
 	rules->addItem(h);

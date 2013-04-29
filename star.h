@@ -9,6 +9,7 @@ public:
 	Star(double nx, double ny, int vx, int vy, QPixmap* pic);
 	~Star();
 	bool move();
+	bool collide(Cereal *);
 	
 private:
 	int count;

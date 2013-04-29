@@ -34,3 +34,7 @@ void Cereal::setY(int ny) {
     y = ny;
 }
 
+char Cereal::getType() {
+    return type;
+}
+

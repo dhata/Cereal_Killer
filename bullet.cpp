@@ -2,6 +2,7 @@
 
 Bullet::Bullet(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
 	count =0;
+	type='b';	//C stands for crystal
 }
 
 Bullet::~Bullet(){
@@ -9,7 +10,7 @@ Bullet::~Bullet(){
 
 bool Bullet::move(){
 	count++;
-	if(count==20){
+	if(count==15){
 		//x+=velocityX;
 		y+=velocityY;
 		if(y<0){
