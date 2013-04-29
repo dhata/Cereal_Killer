@@ -1,5 +1,5 @@
 # Cereal Killer
-This game is a keybased game that uses the keys x and c to move the player and the space bar to attack.
+This game is a keybased game that uses the keys x and c to move the player and the m key to attack.
 
 Written by Danielle Hata
 
@@ -20,7 +20,7 @@ Written by Danielle Hata
   	* enters from the any side, does not exit unless destroyed
   5. Object E - Star
   	* moves randomly up, down, left right
-  	* enters from N W E, could exit any side
+  	* doesn't leave the screen. The number of stars cumulates and makes the game harder
   	* not killable, when it collides with other objects it destroys them
   6. Object F - Player (crystal)
   	* moves horizontally on the bottom of the screen.
@@ -41,10 +41,10 @@ There will be a docked gun at the bottom of the screen. You will shoot at the ob
 For every object you defeat, you get more crystals. There is no penalty for missing killing an object or when an object hits the gun.
 
 ### Equip
-Uses the keys, x, c, and enter
+Uses the keys, x, c, and m
   1. **x** moves the gun to the left
   2. **c** moves the gun to the right
-  3. **enter** shoots a crystal
+  3. **m** shoots a crystal
 
 ## Scoring
 
@@ -52,7 +52,7 @@ Score will increase by how many objects you kill. Points are granted based on th
 
 ## Lives
 
-Player starts with 50 crystals, decreases 1 bubble for every shot out of the gun, increases crystals by killing objects. Each type of object gives a different crystal reward.
+Player starts with 50 crystals, decreases 1 crystal for every shot out of the gun, increases crystals by killing objects. Each type of object gives a different crystal reward.
 The game ends when the player runs out of crystals.
 
 ## UI Layout
@@ -63,7 +63,7 @@ The game ends when the player runs out of crystals.
 | Quit Button        | QPushButton | Top right        |
 | Name Entry         | QLineEdit   | Above Start      |
 | Score              | QText       | Bottom right     |
-| Bubble Count       | QText       | Bottom mid       |
+| Crystal Count      | QText       | Bottom mid       |
 | Score/Object Guide | QListView   | Right Navigation |
 | Key Instructions   | QListView   | Right Navigation |
 
