@@ -9,19 +9,17 @@ Player::~Player(){
 }
 
 bool Player::move(){
-	count++;
-	if(count==20){
-		x+=velocityX;
-		y+=velocityY;
-		count=0;
-		if(x<0 || (x+73)>700 ){
-			x-=velocityX;
-			y-=velocityY;
-		}
-		else {
-		moveBy(velocityX, velocityY);
-		}
+	x+=velocityX;
+	y+=velocityY;
+		
+	if(x<0 || (x+73)>700 ){
+		x-=velocityX;
+		y-=velocityY;
 	}
+	else {
+	moveBy(velocityX, velocityY);
+	}
+	
 	
 	return true;
 }
