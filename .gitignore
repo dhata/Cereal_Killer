@@ -22,3 +22,8 @@ Makefile
 game_dhata
 game_dhata.pro
 moc_*
+
+# Doxygen files
+config.txt
+html/
+latex/
