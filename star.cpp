@@ -45,8 +45,8 @@ bool Star::move(){
 	    	}
 		count=0;
 		//moveBy(velocityX, velocityY);
-		velocityX=rand()%20 -10;
-		velocityY=rand()%20 -10;
+		velocityX=rand()%21 -10;
+		velocityY=rand()%21 -10;
 	}
 	
 	return true;

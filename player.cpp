@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
-	count =0;
+	//count =0;
 	type='P';
 }
 

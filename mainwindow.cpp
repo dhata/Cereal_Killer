@@ -71,16 +71,21 @@ MainWindow::~MainWindow() {
 	delete diamondpic;
 	delete moonpic;
 	
+	Cereal * temp;
+	while(objectList.size()!=0){
+		temp=objectList.front();
+		objectList.pop_front();
+		boardView->boardScene->removeItem(temp);
+		delete temp;
+	}
+	
 	delete boardView;
 	
-}
+}	
 
-
-
-//void MainWindow::show(){
-//	this->QMainWindow::show();
-//}	
-
+/** 
+ * @pre objectList contains all of the objects in the gamearea.
+ * @post all items have been moved, items that have collided are removed from the objectList and gamearea if necessary */
 void MainWindow::mainMove(){
 	list<Cereal*>::iterator it;
 	for(it = objectList.begin(); it!=objectList.end();++it){
@@ -145,6 +150,7 @@ void MainWindow::mainMove(){
 	//cout<<"finished move\n";
 }
 
+/** @post the objectList has 1 more monster of random type */
 void MainWindow::addMonster(){
 	int type= rand()%5;
 	int dir= rand()%3;
@@ -202,6 +208,7 @@ void MainWindow::addMonster(){
 	boardView->boardScene->addItem(temp);
 }
 
+/** @post timer is stopped, final scores displayed pause is disabled */
 void MainWindow::endScore(){
 	timer->stop();
 	counts_->crystals->setText("GAME OVER. " + buttons_->name->text());
@@ -212,6 +219,8 @@ void MainWindow::endScore(){
 	//buttons_->start->setDisabled(true);
 }
 
+/** @param type character that indicates what monster type was destroyed 
+ * @post points/lives are updated */
 void MainWindow::calc(char type){
 	if(type=='B'){
 		points_+=5;
@@ -235,6 +244,7 @@ void MainWindow::calc(char type){
 	counts_->score->setText(b);
 }
 
+/** accepts a key, if the key is C or X, the player moves right/left. if the key is m, then a bullet is added to the game area */
 void MainWindow::keyPressEvent( QKeyEvent *e){
 	if(gameStarted&&timer->isActive()){
 	if( e->key()== Qt::Key_C){
@@ -272,7 +282,6 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 	}
 }
 			
-
 void MainWindow::startGame(){
 	if(gameStarted){// || buttons_->name->haschanged
 		//reset and restart game!
@@ -325,7 +334,7 @@ void MainWindow::handleTimer(){
 		mainMove();
 	//}
 	if(count==frequency){
-		frequency--;
+		frequency-=5;
 		addMonster();
 		count=0;
 	}

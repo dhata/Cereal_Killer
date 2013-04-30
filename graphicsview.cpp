@@ -10,4 +10,5 @@ GraphicsView::GraphicsView() {
 }
 
 GraphicsView::~GraphicsView(){
+	delete boardScene;
 }

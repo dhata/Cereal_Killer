@@ -45,89 +45,96 @@ class MainWindow : public QMainWindow{
 	Q_OBJECT
 public: 
 	/** default constructor 
-	 * initializes the items to be put into the view, also initializes the layouts and nests them for proper display.
+	 * initializes the Qt Items to be put into the mainwindow, also initializes the qdockWidgets and sets them for proper display.
 	 * sets the initial gameStarted attribute to false. */
 	explicit MainWindow();
 	/** default deconstructor
 	 * deletes some of the QT objects that were declared on the heap */
 	~MainWindow();
 	
-	/** show function displays the MainWindow and all of the objects inside */
-	//void show();
-	
+	/** mainMove function calls move on all of the objects in the play area. if the item moves out of the play area, then it is removed from the view and the objectList.
+	 * handles collision. if any object collides with a star(except another star) then it is removed. if a not star object collides with a bullet, then both are removed from the game and lives/points are awarded. */
 	void mainMove();
 	
+	/** addMonster function generates a direction from which to insert a new monster, generates random locations(near the edges), random velocities, and randomly creates one of 5 monsters. */
 	void addMonster();
 	
+	/** endScore function is called when lives reaches zero. stops the game, makes the pause button invalid, displays the final score and player's name. disables any continued gameplay until game is reset. */
 	void endScore();
 	
+	/** adds lives/points based on what item was deleted/destroyed. is called when a bullet collides with an object */
 	void calc(char type);
 	
 protected: 
+	/** captures key presses, only completes actions when x, c or m are passed to the game
+	 * only accepts keys if the timer is runnng. */
 	void keyPressEvent (QKeyEvent *e);
 	
 
 public slots:
+	/** if the game has not been started yet,it initializes the player and places it in the game area. sets the score/crystal numbers to the inital values.
+	 * if the game has been started, it resets all scores/lives to the initial values, removes items and the player from the play area. */
 	void startGame();
 	
+	/** stops the timer if it is running, starts the timer if it is not running. */
 	void pauseGame();
 	
+	/** calls mainMove, at a set interval, adds more monsters to the game, the interval gets smaller each time a monster is created */
 	void handleTimer();
 	
-	//void close();
-
-	//void readData();
 private:
 	
-	
-	/** Scene holds the QT items */
-	//QGraphicsScene *scene;
 	/** timer lets the objects move continuously */
 	QTimer *timer;
-	//QLineEdit *name;
-	/** start is a button that makes the game start. */
-	//QPushButton *start;
-	/** quit is a button that quits the program */
-	//QPushButton *quit;
-	/** end is a button that pauses the game screen */
-	//QPushButton *pause;
 	
-	/** boardScene is where the game is displayed */
-	//QGraphicsScene *boardScene;
-	/** boardView displays the boardScene in the layout and defines the area it can take up */
-	//QGraphicsView *boardView;
-	
+	/** boardView is where the player/monsters are displayed and move */
 	GraphicsView *boardView;
-	
-	
-	/** vboxlayout that governs the whole window */
-	//QGridLayout *whole;
-	
-	//QTextEdit *score;
 	
 	/** gameStarted attribute is true when there is a board in the window. */
 	bool gameStarted;
 	
+	/** a string for storing the player's name read in */
 	QString user;
+	
+	/** frequency at which the monsters are added to the game */
 	int frequency;
+	
+	/** count for frequency. increased each time the timer ticks */
 	int count;
 	
+	/** list for holding all the monsters/bullets in play */
 	list<Cereal*> objectList;
+	
+	/** pointer to the balloon icon */
 	QPixmap * balloonpic;
+	/** pointer to the star icon */
 	QPixmap * starpic;
+	/** pointer to the player's icon */
 	QPixmap * playerpic;
+	/** pointer to the bullet icon */
 	QPixmap * bulletpic;
+	/** pointer to the clover icon */
 	QPixmap * cloverpic;
+	/** pointer to the diamond icon */
 	QPixmap * diamondpic;
+	/** pointer to the moon icon */
 	QPixmap * moonpic;
+	
+	/** dockWidget where the buttons, instructions, and points key are stored */
 	QDockWidget* commands;
+	/** Widget that contains the buttons, instructions, and points keys, to be added to the commands_ dockWidget */
 	Buttons* buttons_;
 	
+	/** dockWidget where the score/crystals counts are stored. */
 	QDockWidget* numbers;
+	/** Widget that contains the score/crystal count to be added to the numbers dockWidget */
 	Counts* counts_;
 	
+	/** pointer to the player. uninitialized at first. gets initialized in the startGame function */
 	Player* player_;
+	/** current number of crystals that the player has. starts at 50 */
 	int lives;
+	/** running total of the player's points. */
 	int points_;
 	
 	
