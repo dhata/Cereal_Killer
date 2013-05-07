@@ -1,6 +1,6 @@
 #include "bullet.h"
 
-Bullet::Bullet(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
+Bullet::Bullet(double nx, double ny, int vx, int vy, QPixmap* pic, int level): Cereal(nx, ny, vx, vy, pic, level){
 	count =0;
 	type='b';	//C stands for crystal
 }

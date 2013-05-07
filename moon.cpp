@@ -1,6 +1,6 @@
 #include "moon.h"
 
-Moon::Moon(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
+Moon::Moon(double nx, double ny, int vx, int vy, QPixmap* pic, int level): Cereal(nx, ny, vx, vy, pic, level){
 	count =0;
 	type='M';
 }

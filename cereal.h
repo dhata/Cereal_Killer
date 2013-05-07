@@ -8,7 +8,7 @@
 class Cereal : public QGraphicsPixmapItem {
 public:
     /** default constructor. sets the Cereal's initial positon, velocities, sets the QPixmap*/
-    Cereal(double nx, double ny, int vx, int vy, QPixmap* pic );
+    Cereal(double nx, double ny, int vx, int vy, QPixmap* pic, int level );
     /** sets the x value */
     void setX( int x );
     /** sets the y value */
@@ -23,6 +23,8 @@ public:
     int getVelocityY();
     /** returns the cereal type in the form of a char */
     char getType();
+    /** decreases the level/durability of the Cereal. if the level becomes 0, then returns true */
+    bool decrease();
     /** virtual function move that must be implemented differently for every object that inherits Cereal */
     virtual bool move()=0;
 
@@ -39,6 +41,8 @@ protected:
     QPixmap* picture;
     /** char representation of the Cereal type */
     char type;
+    /** number of lives that an object has */
+    int level_;
 };
 
 #endif // BOUNCINGRECTANGLE_H

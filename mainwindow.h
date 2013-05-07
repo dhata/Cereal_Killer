@@ -18,6 +18,7 @@
 #include <QDockWidget>
 #include <QKeyEvent>
 #include <QString>
+#include <QPainter>
 #include "buttons.h"
 #include <list>
 #include "cereal.h"
@@ -136,6 +137,8 @@ private:
 	int lives;
 	/** running total of the player's points. */
 	int points_;
+	
+	int level;
 	
 	
 	

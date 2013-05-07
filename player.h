@@ -7,7 +7,7 @@ class Player: public Cereal{
 
 public:
 	/** default constructor. sets the player's initial positon, velocities, and sets the QPixmap. sets the type to 'P' */
-	Player(double nx, double ny, int vx, int vy, QPixmap* pic);
+	Player(double nx, double ny, int vx, int vy, QPixmap* pic, int level);
 	/** default deconstructor. doesn't do anything */
 	~Player();
 	/** moves the player, constrained to staying in the game area. should never be called based on this game. */

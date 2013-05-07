@@ -6,7 +6,7 @@ class Diamond: public Cereal{
 
 public:
 	/** default constructor. sets the diamnd's initial positon, velocities, and sets the QPixmap. sets the type to 'D' */
-	Diamond(double nx, double ny, int vx, int vy, QPixmap* pic, int dir);
+	Diamond(double nx, double ny, int vx, int vy, QPixmap* pic, int dir, int level);
 	/** default deconstructor. doesn't do anything */
 	~Diamond();
 	/** moves the diamond forward. depending on what direction the diamond enters the game area from, x or y velocity switches positive/negative every 15 movements to create zig zag movement. */

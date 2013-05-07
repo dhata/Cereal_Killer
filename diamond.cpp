@@ -1,6 +1,6 @@
 #include "diamond.h"
 
-Diamond::Diamond(double nx, double ny, int vx, int vy, QPixmap* pic, int dir): Cereal(nx, ny, vx, vy, pic){
+Diamond::Diamond(double nx, double ny, int vx, int vy, QPixmap* pic, int dir, int level): Cereal(nx, ny, vx, vy, pic, level){
 	count =0;
 	count2=0;
 	dir_=dir;

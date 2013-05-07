@@ -6,7 +6,7 @@ class Balloon: public Cereal{
 
 public:
 	/** default constructor. sets the balloon's initial positon, velocities, and sets the QPixmap. sets the type to 'B' */
-	Balloon(double nx, double ny, int vx, int vy, QPixmap* pic);
+	Balloon(double nx, double ny, int vx, int vy, QPixmap* pic, int level);
 	/** default deconstructor. doesn't do anything */
 	~Balloon();
 	/** balloon moves forward every 15 calls to move. moves straight. if the balloon moves outside of the game area, returns false. otherwise returns true. */

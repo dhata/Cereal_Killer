@@ -1,6 +1,6 @@
 #include "clover.h"
 
-Clover::Clover(double nx, double ny, int vx, int vy, QPixmap* pic): Cereal(nx, ny, vx, vy, pic){
+Clover::Clover(double nx, double ny, int vx, int vy, QPixmap* pic, int level): Cereal(nx, ny, vx, vy, pic, level){
 	count =0;
 	count2=0;
 	type='C';

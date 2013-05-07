@@ -3,6 +3,9 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QBrush>
+#include <QPixmap>
+#include <QImage>
 
 class GraphicsView: public QGraphicsView {
 	

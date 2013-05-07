@@ -1,6 +1,6 @@
 #include "cereal.h"
 
-Cereal::Cereal(double nx, double ny, int vx, int vy, QPixmap* pic ) :
+Cereal::Cereal(double nx, double ny, int vx, int vy, QPixmap* pic, int level ) :
     QGraphicsPixmapItem(*pic) {
     x = nx;
     y = ny;
@@ -8,6 +8,7 @@ Cereal::Cereal(double nx, double ny, int vx, int vy, QPixmap* pic ) :
     velocityY = vy;
     setPos(x, y);
    // move(x,y);
+   level_=level;
 }
 
 int Cereal::getX() {
@@ -36,5 +37,14 @@ void Cereal::setY(int ny) {
 
 char Cereal::getType() {
     return type;
+}
+
+bool Cereal::decrease(){
+    level_--;
+    if( level_==0 ){
+    	return true;
+    } else {
+    	return false;
+    }
 }
 

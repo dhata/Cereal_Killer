@@ -7,7 +7,7 @@ class Bullet: public Cereal{
 
 public:
 	/** default constructor. sets the bullet's initial positon, velocities, and sets the QPixmap. sets the type to 'b' */
-	Bullet(double nx, double ny, int vx, int vy, QPixmap* pic);
+	Bullet(double nx, double ny, int vx, int vy, QPixmap* pic, int level);
 	/** default deconstructor. doesn't do anything */
 	~Bullet();
 	/** moves the bullet straight forward. if the bullet reaches the edge of the game area, then it returns false. */

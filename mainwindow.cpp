@@ -43,6 +43,7 @@ MainWindow::MainWindow() {
 	count=0;
 	lives=50;
 	points_=0;
+	level =1;
 	
 	balloonpic=new QPixmap("images/balloon.gif");
 	starpic=new QPixmap("images/star.gif");
@@ -51,6 +52,8 @@ MainWindow::MainWindow() {
 	cloverpic=new QPixmap("images/clover.gif");
 	diamondpic=new QPixmap("images/diamond.gif");
 	moonpic=new QPixmap("images/moon.gif");
+	
+	
 	
 	setFocus();
 	
@@ -87,6 +90,7 @@ MainWindow::~MainWindow() {
  * @pre objectList contains all of the objects in the gamearea.
  * @post all items have been moved, items that have collided are removed from the objectList and gamearea if necessary */
 void MainWindow::mainMove(){
+	//remove items that have fallen out of the scene
 	list<Cereal*>::iterator it;
 	for(it = objectList.begin(); it!=objectList.end();++it){
 		if( !(*it)->move() ) {
@@ -97,6 +101,7 @@ void MainWindow::mainMove(){
 			--it;
 		}
 	}
+	//remove items that have collided
 	list<Cereal*>::iterator it2;
 	for(it = objectList.begin(); it!=objectList.end();++it){
 		//Cereal* itemA=objectList[i];
@@ -111,11 +116,18 @@ void MainWindow::mainMove(){
 				continue;
 			if(tempA->getType()=='S'){
 			if(tempA->collidesWithItem(tempB)){
+				if(tempB->getType()=='b'){
+					if(tempA->decrease()){
+						f=true;
+					}
+				}
 				if(tempB->getType()!='S'){
-					boardView->boardScene->removeItem(tempB);
-					objectList.remove(tempB);
-					--it2;
-					delete tempB;
+					if(tempB->decrease()){
+						boardView->boardScene->removeItem(tempB);
+						objectList.remove(tempB);
+						--it2;
+						delete tempB;
+					}
 					//cout<<"Star killed\n";
 					//continue;
 				}
@@ -123,12 +135,25 @@ void MainWindow::mainMove(){
 			}
 			if(tempA->getType()=='b'){
 				if(tempA->collidesWithItem(tempB)){
+					if(tempB->getType()=='S'){
+						if(tempB->decrease()){
+							calc(tempB->getType());
+							boardView->boardScene->removeItem(tempB);
+							objectList.remove(tempB);
+							--it2;
+							delete tempB;
+							f=true;
+							continue;
+						}
+					} 
 					if(tempB->getType()!='S'&&tempB->getType()!='b'){
-						calc(tempB->getType());
-						boardView->boardScene->removeItem(tempB);
-						objectList.remove(tempB);
-						--it2;
-						delete tempB;
+						if(tempB->decrease()){
+							calc(tempB->getType());
+							boardView->boardScene->removeItem(tempB);
+							objectList.remove(tempB);
+							--it2;
+							delete tempB;
+						}
 						f=true;
 						//cout<<"bullet killed\n";
 						//continue;
@@ -183,22 +208,22 @@ void MainWindow::addMonster(){
 	Cereal* temp;
 	switch(type){
 		case 0:
-			temp=new Balloon(x, y, vx, vy, balloonpic);
+			temp=new Balloon(x, y, vx, vy, balloonpic, level);
 			break;
 		case 1:
-			temp=new Star(x, y, vx, vy, starpic);
+			temp=new Star(x, y, vx, vy, starpic, level);
 			break;
 		case 2: 
-			temp=new Clover(x, y, vx, vy, cloverpic);
+			temp=new Clover(x, y, vx, vy, cloverpic, level);
 			break;
 		case 3: 
-			temp=new Diamond(x,y, vx, vy, diamondpic, dir);
+			temp=new Diamond(x,y, vx, vy, diamondpic, dir, level);
 			break;
 		case 4: 
-			temp=new Moon(x, y, vx, vy, moonpic);
+			temp=new Moon(x, y, vx, vy, moonpic, level);
 			break;
 		default:
-			temp=new Balloon(x, y, vx, vy, balloonpic);
+			temp=new Balloon(x, y, vx, vy, balloonpic, level);
 			break;
 	}
 	//temp=new Diamond(x,y, vx, vy, diamondpic, dir);
@@ -242,6 +267,13 @@ void MainWindow::calc(char type){
 	QString b;
 	b.setNum(points_);
 	counts_->score->setText(b);
+	if(points_>50){
+		level =3;
+		boardView->boardScene->setBackgroundBrush(QBrush(QImage("images/small-white-tile.png")));
+	} else if (points_>20){
+		level = 2;
+		boardView->boardScene->setBackgroundBrush(QBrush(QImage("images/small-white2-tile.png")));
+	} 
 }
 
 /** accepts a key, if the key is C or X, the player moves right/left. if the key is m, then a bullet is added to the game area */
@@ -254,7 +286,7 @@ void MainWindow::keyPressEvent( QKeyEvent *e){
 	} else if( e->key()==Qt::Key_M){
 		//make a new bullet/add to the objectList
 		if(lives>0){
-		Cereal* temp= new Bullet(player_->getX()+7, player_->getY(), 0, -10, bulletpic);
+		Cereal* temp= new Bullet(player_->getX()+7, player_->getY(), 0, -10, bulletpic, 1);
 		objectList.push_back(temp);
 		boardView->boardScene->addItem(temp);
 		lives--;
@@ -302,6 +334,8 @@ void MainWindow::startGame(){
 		delete player_;
 		lives=50;
 		points_=0;
+		level=1;
+		boardView->boardScene->setBackgroundBrush(QBrush(QImage("images/large-white2-tile.png")));
 		return;
 	}
 	if(buttons_->name->isModified()){
@@ -314,7 +348,7 @@ void MainWindow::startGame(){
 	QString a;
 	a.setNum(lives);
 	counts_->crystals->setText(a);
-	player_=new Player(X_COORD/2-35, Y_COORD-57,10,10, playerpic);
+	player_=new Player(X_COORD/2-35, Y_COORD-57,10,10, playerpic, level);
 	boardView->boardScene->addItem(player_);
 	}
 }
