@@ -34,6 +34,7 @@ private:
 	/** lists the point values of the objects */
 	QListWidget* points;
 	
+	
 public:
 	/** name is a QLineEdit that accepts the player's username */
 	QLineEdit *name;
@@ -43,7 +44,8 @@ public:
 	QPushButton *quit;
 	/** end is a button that pauses the game screen */
 	QPushButton *pause;
-	
+	/** lists the high scores */
+	QListWidget* highS;
 	
 };
 

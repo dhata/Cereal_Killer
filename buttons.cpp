@@ -52,6 +52,8 @@ Buttons::Buttons(MainWindow* m){
 	
 	layout->addWidget(points);
 	
+	highS= new QListWidget;
+	layout->addWidget(highS);
 }
 	
 void Buttons::startGame(){

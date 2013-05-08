@@ -19,6 +19,10 @@
 #include <QKeyEvent>
 #include <QString>
 #include <QPainter>
+#include <string>
+#include <queue>
+#include <fstream>
+#include <string>
 #include "buttons.h"
 #include <list>
 #include "cereal.h"
@@ -31,6 +35,8 @@
 #include "clover.h"
 #include "diamond.h"
 #include "moon.h"
+#include "highscore.h"
+#include "hsmaxlist.h"
 
 
 using namespace std;
@@ -44,6 +50,8 @@ using namespace std;
  */
 class MainWindow : public QMainWindow{
 	Q_OBJECT
+	
+	
 public: 
 	/** default constructor 
 	 * initializes the Qt Items to be put into the mainwindow, also initializes the qdockWidgets and sets them for proper display.
@@ -65,6 +73,15 @@ public:
 	
 	/** adds lives/points based on what item was deleted/destroyed. is called when a bullet collides with an object */
 	void calc(char type);
+	
+	/** updates the HighScore table in the buttons docking widget */
+	void displayHS();
+	
+	/** reads in the high scores from a file */
+	void readScores();
+	
+	/** prints the high scores to a file */
+	void printScores();
 	
 protected: 
 	/** captures key presses, only completes actions when x, c or m are passed to the game
@@ -139,6 +156,8 @@ private:
 	int points_;
 	
 	int level;
+	
+	HSMaxList scoreTable;
 	
 	
 	

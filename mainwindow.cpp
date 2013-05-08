@@ -53,13 +53,15 @@ MainWindow::MainWindow() {
 	diamondpic=new QPixmap("images/diamond.gif");
 	moonpic=new QPixmap("images/moon.gif");
 	
-	
+	readScores();
+	displayHS();
 	
 	setFocus();
 	
 }
 	
 MainWindow::~MainWindow() {
+	printScores();
 	delete buttons_;
 	delete commands;
 	delete counts_;
@@ -83,7 +85,6 @@ MainWindow::~MainWindow() {
 	}
 	
 	delete boardView;
-	
 }	
 
 /** 
@@ -240,7 +241,10 @@ void MainWindow::endScore(){
 
 	counts_->crystals->append("FINAL SCORE: " + counts_->score->toPlainText());
 	buttons_->pause->setDisabled(true);
-	
+	HighScore* temp= new HighScore(buttons_->name->text(), counts_->score->toPlainText().toInt());
+	scoreTable.push(temp);
+	displayHS();
+	//cout<<"displayHS\n";
 	//buttons_->start->setDisabled(true);
 }
 
@@ -267,13 +271,64 @@ void MainWindow::calc(char type){
 	QString b;
 	b.setNum(points_);
 	counts_->score->setText(b);
-	if(points_>50){
+	if(points_>300){
 		level =3;
 		boardView->boardScene->setBackgroundBrush(QBrush(QImage("images/small-white-tile.png")));
-	} else if (points_>20){
+	} else if (points_>150){
 		level = 2;
 		boardView->boardScene->setBackgroundBrush(QBrush(QImage("images/small-white2-tile.png")));
 	} 
+}
+
+void MainWindow::displayHS(){
+	int i=0;
+	buttons_->highS->clear();
+	HSMaxList temp;
+	while(i<5 && !scoreTable.empty()){
+		HighScore* tempHS = scoreTable.top();
+		scoreTable.pop();
+		//cout<< *tempHS<<endl;
+		buttons_->highS->addItem(tempHS->toString());
+		temp.push(tempHS);
+		i++;
+	}
+	while(!temp.empty()){
+		scoreTable.push(temp.top());
+		temp.pop();
+	}
+}
+
+void MainWindow::readScores(){
+	ifstream fin;
+	fin.open("scores.txt");
+	if(fin.fail()){
+		return;
+	} else{
+		while(!fin.eof()){
+			string a;
+			int b;
+			getline(fin, a);
+			if(fin.good()){//cout<<a<<endl;
+				fin>>b;
+			//cout<<b;
+				fin.ignore(10,'\n');
+				QString c;
+			
+				HighScore * temp= new HighScore(c.fromStdString(a), b);
+				scoreTable.push(temp);
+			}
+		}
+	}
+}
+
+void MainWindow::printScores(){
+	ofstream fout("scores.txt");
+	while(!scoreTable.empty()){
+		HighScore* temp=scoreTable.top();
+		scoreTable.pop();
+		fout<<*temp<<endl;
+	}
+	fout.close();
 }
 
 /** accepts a key, if the key is C or X, the player moves right/left. if the key is m, then a bullet is added to the game area */
