@@ -27,3 +27,7 @@ moc_*
 config.txt
 html/
 latex/
+
+# gameFiles
+scores.txt
+

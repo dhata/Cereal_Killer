@@ -155,8 +155,10 @@ private:
 	/** running total of the player's points. */
 	int points_;
 	
+	/** an int that indicates the level of the game */
 	int level;
 	
+	/** a list sorted in descending order of HighScore pointers */
 	HSMaxList scoreTable;
 	
 	
