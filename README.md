@@ -8,6 +8,7 @@
   + Game Name: Cereal Killer
   + Game Description: The player tries to attack flying cereal and survive as long as possible.
   + [Game Design Doc](GameDesignDoc.md)
+  + [Game License](LICENSE)
 
 
 ### Compile & Run Instructions
